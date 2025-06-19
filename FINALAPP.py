@@ -61,7 +61,6 @@ tabs = st.tabs([
     "Add New Item",
     "Reserved Items",
     "Community",
-    "Lockers",
     "Payment"
 ])
 
@@ -203,20 +202,7 @@ with tabs[4]:
         with row[2]:
             st.write("⭐" * ratings[i])
 
-# ------------------ TAB 6: LOCKERS ------------------
-with tabs[5]:
-    st.markdown("<h2 style='text-align:center'>FIND A LOCKER NEAR YOU!</h2>", unsafe_allow_html=True)
-    st.image("https://via.placeholder.com/800x300/66ff66/000000?text=Barcelona+Map", use_column_width=True)
-    city_input = st.text_input("INSERT CITY", label_visibility="visible", placeholder="Enter your city")
-    if city_input:
-        prompt = f"Which locker is closest to {city_input}? Choices: {[locker['city'] for locker in st.session_state.lockers]}"
-        try:
-            response = model.invoke(prompt)
-            st.success(f"Nearest locker: {response.content.strip()}")
-        except Exception as e:
-            st.error("Could not find locker. " + str(e))
-
-# ------------------ TAB 7: PAYMENT ------------------
+# ------------------ TAB 6: PAYMENT ------------------
 with tabs[6]:
     st.markdown("<h2>CHECK OUT</h2>", unsafe_allow_html=True)
     cart_items = ["ITEM NAME", "ITEM NAME", "ITEM NAME"]
